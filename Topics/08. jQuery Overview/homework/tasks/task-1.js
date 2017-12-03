@@ -21,7 +21,22 @@ Create a function that takes a selector and COUNT, then generates inside a UL wi
 
 function solve() {
   return function (selector, count) {
-   
+    if(selector && count > 1) {
+      let ulElement = $('<ul />').addClass('items-list');
+
+      let counter = 0;
+      do {
+        ulElement.append(
+          $('<li />')
+          .addClass('list-item')
+          .text('List item #' + counter));
+        counter += 1;
+      } while (counter < count)
+
+      $(selector).append(ulElement)
+    } else {
+      throw new Error('Error');
+    }
   };
 };
 
